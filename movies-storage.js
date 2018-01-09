@@ -1,5 +1,4 @@
-const moviesData = [
-    {
+const moviesArr = [{
         "id": 1,
         "title": "The Shawshank Redemption",
         "year": 1994,
@@ -56,3 +55,27 @@ const moviesData = [
         "seen": "F"
     }
 ]
+
+export default class MoviesStorage {
+    constructor() {
+        if (localStorage.movies && Array.isArray(localStorage.movies)) {
+            JSON.parse(localStorage.movies)
+        } else {
+            localStorage.movies = JSON.stringify(moviesArr) //object -> string
+        }
+    }
+
+    get(id) {
+        if (id) {
+            let movies = JSON.parse(localStorage.movies);
+            movies.find(function (movie) {
+                console.log(movie.id == id);
+                return movie.id == id
+            });
+        } else return JSON.parse(localStorage.movies); //string -> object
+    }
+
+
+}
+
+// movies.find( function(movie) { return movie.id == 13 } );
