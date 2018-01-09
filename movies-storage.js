@@ -66,16 +66,20 @@ export default class MoviesStorage {
     }
 
     get(id) {
-        if (id) {
-            let movies = JSON.parse(localStorage.movies);
-            movies.find(function (movie) {
-                console.log(movie.id == id);
-                return movie.id == id
-            });
-        } else return JSON.parse(localStorage.movies); //string -> object
+        const movies = JSON.parse(localStorage.movies)
+       
+        const movie = movies.find(movie => movie.id === id)
+        return movie
+    }//zwracanie filmu o podanym id 
+    remove(id){
+        const movies = JSON.parse(localStorage.movies)
+       
+        const movieIndex = movies.findIndex(movie => movie.id === id)
+      const newMovies = [...movies.slice(0, movieIndex), ... movies.
+        slice(movieIndex + 1)]
+        return newMovies
     }
-
-
 }
-
 // movies.find( function(movie) { return movie.id == 13 } );
+
+//
