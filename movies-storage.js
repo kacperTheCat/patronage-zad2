@@ -55,7 +55,7 @@ const moviesArr = [{
         "seen": "F"
     }
 ]
-
+// const movies = JSON.parse(localStorage.movies);
 export default class MoviesStorage {
     constructor() {
         if (localStorage.movies && Array.isArray(localStorage.movies)) {
@@ -65,21 +65,44 @@ export default class MoviesStorage {
         }
     }
 
+
     get(id) {
         const movies = JSON.parse(localStorage.movies)
-       
+
         const movie = movies.find(movie => movie.id === id)
         return movie
-    }//zwracanie filmu o podanym id 
-    remove(id){
+    } //zwracanie filmu o podanym id 
+
+    
+    set(id, data) {
         const movies = JSON.parse(localStorage.movies)
-       
+
+        let movie = movies.find(movie => movie.id === id)
+        let newData = data
+        movie = Object.assign(newData) 
+
+    }
+
+    remove(id) {
+        const movies = JSON.parse(localStorage.movies)
         const movieIndex = movies.findIndex(movie => movie.id === id)
-      const newMovies = [...movies.slice(0, movieIndex), ... movies.
-        slice(movieIndex + 1)]
-        return newMovies
+        const newMovies = [...movies.slice(0, movieIndex), ...movies.
+            slice(movieIndex + 1)
+        ]
+        return newMovies //przyrównać zmienne czy może tak zostać
+    }
+    
+    get() {
+        const movies = JSON.parse(localStorage.movies)
+        
+        return movies
+    }// zwraca liste filmow, ale jesli jest na poczatku, jest undefined
+    set(data) {
+
+        const movies = JSON.parse(localStorage.movies)
+        movies.push(data)
+        localStorage.setItem('movies', JSON.stringify(movies))
+        return movies
+
     }
 }
-// movies.find( function(movie) { return movie.id == 13 } );
-
-//

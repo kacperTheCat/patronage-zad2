@@ -1,9 +1,15 @@
 import setCounterOfTo from "./movies-counter.js";
 import moviesStorage from "./movies-storage.js";
 
-const MoviesStorage = new moviesStorage(); //instancjonowanie klasy MoviesStorage
-const my_movie = MoviesStorage.get(13); 
-const remove_movie = MoviesStorage.remove(2)
-console.log(my_movie)// zwracanie filmu o podanym id 
-// setCounterOfTo();//test modułów 
-console.log(remove_movie)
+const MoviesStorage = new moviesStorage() //instancjonowanie 
+//klasy MoviesStorage
+const myMovies = MoviesStorage.get();
+const myMovie = MoviesStorage.get(13)
+const addMovie = MoviesStorage.set({id: 666});
+const addData = MoviesStorage.set(13, {data: "haha"});
+const removeMovie = MoviesStorage.remove(2)
+console.log(myMovies)
+console.log(myMovie)// zwracanie filmu o podanym id 
+console.log(addMovie)
+console.log(addData)
+console.log(removeMovie)
