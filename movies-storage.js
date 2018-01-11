@@ -68,20 +68,21 @@ export default class MoviesStorage {
 
     get(id) {
         const movies = JSON.parse(localStorage.movies)
-
+        
         const movie = movies.find(movie => movie.id === id)
         return movie
     } //zwracanie filmu o podanym id 
 
-    
+
     set(id, data) {
         const movies = JSON.parse(localStorage.movies)
 
         let movie = movies.find(movie => movie.id === id)
-        let newData = data
-        movie = Object.assign(newData) 
-
-    }
+        let newData = {data}
+         Object.assign(movie, data) 
+        return movie
+        
+    }//do filmu o okrelonym id dodaje opis 
 
     remove(id) {
         const movies = JSON.parse(localStorage.movies)
@@ -89,20 +90,20 @@ export default class MoviesStorage {
         const newMovies = [...movies.slice(0, movieIndex), ...movies.
             slice(movieIndex + 1)
         ]
-        return newMovies //przyrównać zmienne czy może tak zostać
+        return newMovies //usuwa film o podanym id
     }
     
-    get() {
-        const movies = JSON.parse(localStorage.movies)
+    // get() {
+    //     const movies = JSON.parse(localStorage.movies)
         
-        return movies
-    }// zwraca liste filmow, ale jesli jest na poczatku, jest undefined
-    set(data) {
+    //     return movies
+    // }// zwraca liste filmow, ale jesli jest na poczatku, jest undefined
+    // set(data) {
 
-        const movies = JSON.parse(localStorage.movies)
-        movies.push(data)
-        localStorage.setItem('movies', JSON.stringify(movies))
-        return movies
+    //     const movies = JSON.parse(localStorage.movies)
+    //     movies.push(data)
+    //     localStorage.setItem('movies', JSON.stringify(movies))
+    //     return movies
 
-    }
+    // }//wyłączam na czas kombinowania 
 }
