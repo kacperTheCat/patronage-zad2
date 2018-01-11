@@ -55,7 +55,7 @@ const moviesArr = [{
         "seen": "F"
     }
 ]
-// const movies = JSON.parse(localStorage.movies);
+
 export default class MoviesStorage {
     constructor() {
         if (localStorage.movies && Array.isArray(localStorage.movies)) {
@@ -65,24 +65,37 @@ export default class MoviesStorage {
         }
     }
 
+    getter() {
+        const movies = JSON.parse(localStorage.movies)
+        // let moviesList = ...movies // dlaczego nie mogę zwrócić ...movies?
+        return movies
+
+    }
 
     get(id) {
         const movies = JSON.parse(localStorage.movies)
-        
+
         const movie = movies.find(movie => movie.id === id)
         return movie
-    } //zwracanie filmu o podanym id 
+    } //zwracanie filmu o podanym id
 
+    setter(data) {
 
+            const movies = JSON.parse(localStorage.movies)
+            movies.push(data)
+            localStorage.setItem('movies', JSON.stringify(movies))
+            return movies
+
+        }
     set(id, data) {
         const movies = JSON.parse(localStorage.movies)
 
         let movie = movies.find(movie => movie.id === id)
         let newData = {data}
-         Object.assign(movie, data) 
+         Object.assign(movie, data)
         return movie
-        
-    }//do filmu o okrelonym id dodaje opis 
+
+    }//do filmu o okrelonym id dodaje opis
 
     remove(id) {
         const movies = JSON.parse(localStorage.movies)
@@ -92,10 +105,10 @@ export default class MoviesStorage {
         ]
         return newMovies //usuwa film o podanym id
     }
-    
+
     // get() {
     //     const movies = JSON.parse(localStorage.movies)
-        
+
     //     return movies
     // }// zwraca liste filmow, ale jesli jest na poczatku, jest undefined
     // set(data) {
@@ -105,5 +118,5 @@ export default class MoviesStorage {
     //     localStorage.setItem('movies', JSON.stringify(movies))
     //     return movies
 
-    // }//wyłączam na czas kombinowania 
+    // }//wyłączam na czas kombinowania
 }
