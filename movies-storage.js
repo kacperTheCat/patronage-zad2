@@ -66,6 +66,8 @@ const moviesArr = [
 
 export default class MoviesStorage {
   constructor() {
+
+      this.movies = JSON.parse(localStorage.movies);
     if (localStorage.movies && Array.isArray(localStorage.movies)) {
       JSON.parse(localStorage.movies);
     } else {
@@ -74,50 +76,55 @@ export default class MoviesStorage {
   }
 
   get(id) {
-    const movies = JSON.parse(localStorage.movies);
     if (arguments.length == 0) {
+      let movieList = this.movies.map((m) => `<li>
+      title: ${m.title} <br>
+      year: ${m.year} <br>
+      genre: ${m.genre} <br>
+      summary: ${m.summary}
+      <br>
+      seen
+      <input id=${m.id} onChange="addSeen(this)" type='checkbox' ${(m.seen === "T") ? "checked" : "F"}></input>
+   </li>
+   `);
 
-      for(let i = 0; i< movies.length; i++){
-
-        var moviesList = movies[i]
-      }
-
-      return moviesList// do rozwiązania
-
+        return movieList;
     }
 
       else if (arguments.length == 1) {
-      const movie = movies.find(movie => movie.id === id);
+      const movie = this.movies.find(movie => movie.id === id);
 
       return movie;
+
     }
   }
 
   set(id, data) {
-    const movies = JSON.parse(localStorage.movies);
     if (typeof data === "undefined") data = id;
 
     if (arguments.length == 1) {
       let newMovie = data;
-      movies.push(newMovie);
-      localStorage.setItem("movies", JSON.stringify(movies));
+      this.movies.push(newMovie);
+      localStorage.setItem("movies", JSON.stringify(this.movies));
 
-      return movies;
+      return this.movies;
+
     } else if (arguments.length == 2) {
-      let movie = movies.find(movie => movie.id === id);
+      let movie = this.movies.find(movie => movie.id === id);
       let newData = { data };
-      Object.assign(movie, data);
+      Object.assign(movie, data);//zamienić na spread
       return movie;
     }
   }
 
   remove(id) {
-    const movies = JSON.parse(localStorage.movies);
-    const movieIndex = movies.findIndex(movie => movie.id === id);
+    const movieIndex = this.movies.findIndex(movie => movie.id === id);
     const newMovies = [
-      ...movies.slice(0, movieIndex),
-      ...movies.slice(movieIndex + 1)
+      ...this.movies.slice(0, movieIndex),
+      ...this.movies.slice(movieIndex + 1)
     ];
+
     return newMovies; //usuwa film o podanym id
+
   }
 }

@@ -10,10 +10,34 @@
 
 <body>
   <div id="moviesCountersContainer">
-    <p>All: <span class="moviesCounter" id="anotherMoviesCounterAll"></span></p>
-    <p>Viewed: <span class="moviesCounter" id="anotherMoviesCounterSeen"></span></p>
+    <p>All:
+      <span class="moviesCounter" id="anotherMoviesCounterAll"></span>
+    </p>
+    <p>Viewed:
+      <span class="moviesCounter" id="anotherMoviesCounterSeen"></span>
+    </p>
   </div>
-  <div id="formContainer"></div>
+  <div id="formContainer">
+    <form class="add-movie">
+      title
+      <input class="add-movie__title" type="text" name="title" placeholder="title">
+      year
+      <input class="add-movie__year" type="number" name="year">
+      genre
+      <input class="add-movie__genre" type="text" name="genre">
+      summary
+      <input class="add-movie__summary" type="text" name="summary">
+      id
+      <input class="add-movie__id" type="number" name="id">
+      seen? 
+      <input class="add-movie__seen" type="checkbox" name="seen" checked> 
+
+      <!-- yes<input class="add-movie__seen" type="radio" name="seen" value="T" checked="checked" />
+      no<input class="add-movie__seen" type="radio" name="seen" value="F" /> -->
+      <input type="submit" value="add new movie">
+    </form>
+  </div>
+  <script src="add.js" type="module"></script>
 </body>
 
 </html>
