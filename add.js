@@ -1,37 +1,50 @@
-import moviesStorage from "./movies-storage.js"
-import MoviesStorage from "./index.js"
+import moviesStorage from "./movies-storage.js";
+import MoviesStorage from "./index.js";
 
 const form = document.querySelector("form");
-const checkbox = document.querySelector(".add-movie__seen")
-
+// const checkbox = document.querySelector(".add-movie__seen");
 
 document.querySelector("form").onsubmit = function(form) {
+  const titleVal = document.querySelector(".add-movie__title").value;
+  const yearVal = document.querySelector(".add-movie__year").value;
+  const genreVal = document.querySelector(".add-movie__genre").value;
+  const summaryVal = document.querySelector(".add-movie__summary").value;
+  const idVal = document.querySelector(".add-movie__id").value;
 
+  const checkbox = document.querySelector(".add-movie__seen");
+  const checkboxValue = checkbox.checked ? "T" : "F";
 
-//  let value  = document.querySelector(".add-movie__seen").value
-
-
-
-  
-  const checkbox = document.querySelector(".add-movie__seen")
-  const  checkboxValue = checkbox.checked ? 'T' : 'F'
-  
-
-  const  newMovie = {
-
-    
-    title: document.querySelector(".add-movie__title").value,
-    year: document.querySelector(".add-movie__year").value,
-    genre: document.querySelector(".add-movie__genre").value,
-    summary: document.querySelector(".add-movie__summary").value,
-    id: document.querySelector(".add-movie__id").value,
+  const newMovie = {
+    title: titleVal,
+    year: yearVal,
+    genre: genreVal,
+    summary: summaryVal,
+    id: idVal,
     seen: checkboxValue
-
   };
-if()
-  MoviesStorage.set(newMovie);
-  MoviesStorage.get(); // testowo
-  
-  console.log(checkboxValue)
+
+  this.movies = JSON.parse(localStorage.movies);
+  let movie = this.movies.map(movie => movie.title);
+  let titleArray = [];
+  titleArray.push(movie);
+
+  if (titleVal === "" || yearVal === "" || genreVal === "") {
+    if (titleVal === "") {
+      alert("fill the title");
+    } else if (yearVal === "") {
+      alert("fill the year");
+    } else if (genreVal === "") {
+      alert("fill the genre");
+    }
+  } else if (yearVal <= 1000 || yearVal >= 10000) {
+    alert("wrong date");
+  } else if (this.movies.some(movie => movie.title === titleVal)) {
+    alert("the film with the given title exists");
+  } else {
+    MoviesStorage.set(newMovie);
+    form.reset();
+    console.log(this.movies); //sprawdzam czy film został dodany
+  }
+
   return false;
 };
