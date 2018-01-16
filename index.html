@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,25 @@
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
+
 <body>
   <div id="moviesCountersContainer">
-    <p>All: <span class="moviesCounter" id="moviesCounterAll"></span></p>
-    <p>Viewed: <span class="moviesCounter" id="moviesCounterSeen"></span></p>
-</div>
-<div id="moviesListContainer">
-    <ul id="moviesList"></ul>
-</div>
-<a href="add.html">add movie</a>
-  <script src="movies-counter.js" type="module"></script>
-  <!-- <script src="movies-storage.js" type="module"></script> -->
+    <p>All:
+      <span class="moviesCounter" id="moviesCounterAll"></span>
+    </p>
+    <p>Viewed:
+      <span class="moviesCounter" id="moviesCounterSeen"></span>
+    </p>
+  </div>
+  <div class="wrapper">
+    <a class="add-link" href="add.html">add movie</a>
+  </div>
+
+  <div id="moviesListContainer">
+    <ul id="moviesList" class="movies-list"></ul>
+  </div>
+
   <script src="index.js" type="module"></script>
 </body>
+
 </html>

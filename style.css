@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: roboto;
 }
 
 #moviesCountersContainer {
@@ -21,11 +22,69 @@ body {
   align-items: center;
 }
 
-#moviesList {
-  /* margin-top: 100px; */
-  text-align: center;
+#moviesListContainer {
+  display: flex;
+  justify-content: center;
 }
 
-#moviesList>li:hover {
-  background: #bada55;
+.movies-list {
+  margin: 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+.movies-list__element {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  max-width: 300px;
+  min-height: 220px;
+  border: 1px solid #000;
+  transition: 0.5s;
+}
+.movies-list__element:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.movies-list__element--bold {
+  font-weight: 900;
+}
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.sub-form {
+  border: none;
+  box-shadow: none;
+  position: relative;
+  /* top: 1rem; */
+}
+.add-link {
+  margin: 0 auto;
+  text-decoration: none;
+  padding: 0.6rem;
+  background: rgba(244, 67, 54, 0.725);
+  color: #000;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 1px;
+  transition: 0.5s;
+  box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.225);
+}
+.add-link:hover {
+  box-shadow: 0 8px 20px 0px rgba(0, 0, 0, 0.225);
+}
+.add-movie {
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  min-width: 300px;
+  box-shadow: 5px 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-top: 1px solid rgba(124, 124, 124, 0.062);
+}
+.add-movie__summary {
+  resize: both;
+  overflow: auto;
+  max-width: 300px;
 }

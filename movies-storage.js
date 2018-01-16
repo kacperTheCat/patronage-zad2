@@ -66,8 +66,7 @@ const moviesArr = [
 
 export default class MoviesStorage {
   constructor() {
-
-      this.movies = JSON.parse(localStorage.movies);
+    this.movies = JSON.parse(localStorage.movies);
     if (localStorage.movies && Array.isArray(localStorage.movies)) {
       JSON.parse(localStorage.movies);
     } else {
@@ -77,25 +76,27 @@ export default class MoviesStorage {
 
   get(id) {
     if (arguments.length == 0) {
-      let movieList = this.movies.map((m) => `<li>
-      title: ${m.title} <br>
-      year: ${m.year} <br>
-      genre: ${m.genre} <br>
-      summary: ${m.summary}
-      <br>
-      seen
-      <input id=${m.id} onChange="addSeen(this)" type='checkbox' ${(m.seen === "T") ? "checked" : "F"}></input>
-   </li>
-   `);
+      let movieList = this.movies.map(
+        m => `<li class="movies-list__element">
+      <span class="movies-list__element--bold">title:</span> ${m.title} <br>
+      <span class="movies-list__element--bold">year</span>: ${m.year} <br>
+      <span class="movies-list__element--bold">genre:</span> ${m.genre} <br>
+      <span class="movies-list__element--bold">summary:</span> ${m.summary}<br>
+      <span class="movies-list__element--bold">id:</span> ${m.id}<br>
+      <span class="movies-list__element--bold">seen</span>
+      <input id=${m.id} onChange="addSeen(this)" type='checkbox' ${
+          m.seen === "T" ? "checked" : "F"
+        }></input>
+ 
+      </li>
+   `
+      );
 
-        return movieList;
-    }
-
-      else if (arguments.length == 1) {
+      return movieList.join("");
+    } else if (arguments.length == 1) {
       const movie = this.movies.find(movie => movie.id === id);
 
       return movie;
-
     }
   }
 
@@ -108,23 +109,22 @@ export default class MoviesStorage {
       localStorage.setItem("movies", JSON.stringify(this.movies));
 
       return this.movies;
-
     } else if (arguments.length == 2) {
       let movie = this.movies.find(movie => movie.id === id);
       let newData = { data };
-      Object.assign(movie, data);//zamienić na spread
+      Object.assign(movie, data); //zamienić na spread
       return movie;
     }
   }
 
   remove(id) {
     const movieIndex = this.movies.findIndex(movie => movie.id === id);
+
     const newMovies = [
       ...this.movies.slice(0, movieIndex),
       ...this.movies.slice(movieIndex + 1)
     ];
-
-    return newMovies; //usuwa film o podanym id
-
+    this.movies = newMovies;
+    return this.movies; 
   }
 }

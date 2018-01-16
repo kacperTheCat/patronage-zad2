@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -17,25 +18,30 @@
       <span class="moviesCounter" id="anotherMoviesCounterSeen"></span>
     </p>
   </div>
-  <div id="formContainer">
-    <form class="add-movie">
-      label
-      <input class="add-movie__title" type="text" name="title" placeholder="title">
-      year
-      <input class="add-movie__year" type="number" name="year">
-      genre
-      <input class="add-movie__genre" type="text" name="genre">
-      summary
-      <input class="add-movie__summary" type="text" name="summary">
-      id
-      <input class="add-movie__id" type="number" name="id">
-      seen? 
-      <input class="add-movie__seen" type="checkbox" name="seen" checked> 
+  <div class="wrapper">
+    <a class="add-link" href="index.html">back to list</a>
+  </div>
 
-      <!-- yes<input class="add-movie__seen" type="radio" name="seen" value="T" checked="checked" />
-      no<input class="add-movie__seen" type="radio" name="seen" value="F" /> -->
-      <input type="submit" value="add new movie">
-    </form>
+
+  <!-- dodać link do index -->
+  <div class="wrapper">
+    <div id="formContainer">
+      <form class="add-movie">
+        <label for="title">title</label>
+        <input class="add-movie__title" id="title" type="text" name="title">
+        <label for="year">year</label>
+        <input class="add-movie__year" id="year" type="number" name="year">
+        <label for="genre">genre</label>
+        <input class="add-movie__genre" id="genre" type="text" name="genre">
+        <label for="summary">summary</label>
+        <textarea class="add-movie__summary" id="summary" type="text" name="summary"></textarea>
+        <label for="id">id</label>
+        <input class="add-movie__id" id="id" type="number" name="id">
+        <label for="seen">seen?</label>
+        <input class="add-movie__seen" id="seen" type="checkbox" name="seen" checked>
+        <input class="add-link sub-form" type="submit" value="add new movie">
+      </form>
+    </div>
   </div>
   <script src="add.js" type="module"></script>
 </body>

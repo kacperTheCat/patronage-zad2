@@ -1,6 +1,3 @@
-// export default function setCounterOfTo(el, val){
-//  
-// }
-export default function setCounterOfTo() {
-  console.log('hahavba')
-} //punkt 4
+export default function setCounterOfTo(el, val){
+ el.innerHTML = val
+}
